@@ -33,9 +33,14 @@ public class Main {
 		item1.setCantidad(2);
 		session.save(item1);
 		*/
+		Empresa empresa = session.get(Empresa.class, "123456");
+		System.out.println("Hemos recuperado de la tabla empresa: "+empresa.getCif()+" "+empresa.getNombre()+" "+empresa.getEmpleados()+" "+empresa.getDirreccion());
 		
-		Pedido pedido = session.get(Pedido.class, 1);
-		System.out.println("Hemos recuperado "+pedido.getId()+" "+pedido.getFecha());
+		Pedido pedido = session.get(Pedido.class, 0);
+		System.out.println("Hemos recuperado de la tabla pedido: "+pedido.getId()+" "+pedido.getFecha());
+		
+		Item item = session.get(Item.class, 0);
+		System.out.println("Hemos recuperado de la tabla item: "+item.getId()+" "+item.getNombre()+" "+item.getCantidad());
 		
 		session.getTransaction().commit();
 		session.close();
