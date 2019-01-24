@@ -6,10 +6,20 @@
     <class name="Programa.Pedido" table="PEDIDO">
         <id name="id" type="int">
             <column name="Id" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
-        <property name="fecha" type="java.lang.String">
-            <column name="Fecha" />
-        </property>
+        <property name="fecha" type="java.lang.String" column="fecha"/>
+        
+        <list name="item" table="Pedido_item">
+        <key column="Id"/>
+      	<list-index column = "Id_Item">
+      	</list-index>  
+        <composite-element class="Programa.Item">
+        	<property name="id" type="int" column="item_id"/>
+        	<property name="nombre" type="java.lang.String" column="item_nombre"/>
+        	<property name="cantidad" type="int" column="item_cantidad"/>
+        </composite-element>
+        
+        </list>
     </class>
 </hibernate-mapping>

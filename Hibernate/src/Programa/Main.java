@@ -1,5 +1,10 @@
 package Programa;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class Main {
 
@@ -33,6 +38,9 @@ public class Main {
 		item1.setCantidad(2);
 		session.save(item1);
 		*/
+		
+		
+		/*
 		Empresa empresa = session.get(Empresa.class, "123456");
 		System.out.println("Hemos recuperado de la tabla empresa: "+empresa.getCif()+" "+empresa.getNombre()+" "+empresa.getEmpleados()+" "+empresa.getDirreccion());
 		
@@ -41,7 +49,21 @@ public class Main {
 		
 		Item item = session.get(Item.class, 0);
 		System.out.println("Hemos recuperado de la tabla item: "+item.getId()+" "+item.getNombre()+" "+item.getCantidad());
+		*/
 		
+		// 6B
+		
+		Pedido pedido = new Pedido();
+		pedido.setId(258);
+		pedido.setFecha("24/01/2019");
+		pedido.getItem().add(new Item(321, "Lechuga", 20));
+		pedido.getItem().add(new Item(322, "Patata", 21));
+		session.save(pedido);
+		
+		for (Item i : pedido.getItem())
+		{
+			System.out.println("He encontrado: El Id: "+i.getId()+", Nombre: "+i.getNombre()+", Cantidad: "+i.getCantidad());
+		}
 		session.getTransaction().commit();
 		session.close();
 		
